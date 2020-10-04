@@ -1,0 +1,11 @@
+{% extends 'wrapper.html' %}
+{% block body %}
+    <span><h3> Name of the tag: "{{ tag.name }}" .</h3></span>
+    <div class="posts-container mt-4">
+        {% for post in data %}
+        <span class="alert alert-primary"><a href="{{ url_for('posts.post_details', slug=post.slug) }}">{{ post.title }}</a></span>
+            <span class="alert alert-info mx-2">{{ post.body }}</span>
+            <span class="alert alert-warning">{{ post.id }}</span>
+        {% endfor %}
+    </div>
+{% endblock %}

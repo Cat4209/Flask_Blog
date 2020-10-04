@@ -1,0 +1,30 @@
+{% extends 'wrapper.html' %}
+{% block body %}
+    <h1 class="container">BluePrint</h1>
+    <ul>
+        {% for el in pages.items %}
+        <li class="mt-2">
+            <a href="{{ url_for('posts.post_details', slug=el.slug) }}">{{ el.title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+    <nav class="container-fluid">
+      <ul class="pagination">
+        <li class="page-item">
+          <a class="page-link" href="./?page={{pages.prev_num}}" {% if not pages.has_prev %} style="display: none;" {% endif %}>
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        
+        {% for page in pages.iter_pages() %}
+            <li  {% if page == pages.page %} class="page-item active" {% else %} class="page-item" {% endif %}><a class="page-link" href="./?page={{page}}">{{page}}</a></li>
+        {% endfor %}
+        
+        <li class="page-item">
+          <a class="page-link" href="./?page={{pages.next_num}}" {% if not pages.has_next %} style="display: none;" {% endif %}>
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+{% endblock %}

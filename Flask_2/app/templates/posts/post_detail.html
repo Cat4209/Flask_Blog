@@ -1,0 +1,10 @@
+{% extends 'wrapper.html' %}
+{% block body %}
+    <h1 class="container">{{ data.title }}</h1>
+    <div class="tags_container container">
+        {% for tag in tags %}
+            <span class="badge badge-success"><a href="{{ url_for('posts.tag_detail', slug=tag.slug) }}">{{ tag.name }}</a></span>
+        {% endfor %}
+    </div>
+    <h4 class="container">{{ data.body }}</h4>
+{% endblock %}
